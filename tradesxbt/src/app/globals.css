@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Agent Brand Colors */
+  --agent-primary: 0, 255, 128;    /* #00FF80 - Neon green */
+  --agent-secondary: 138, 75, 255; /* #8A4BFF - Purple */
+  --agent-accent: 255, 86, 86;     /* #FF5656 - Coral */
+  --agent-neutral: 10, 10, 10;     /* #0A0A0A - Near black */
+  
+  /* Gradients */
+  --agent-gradient-primary: linear-gradient(135deg, rgba(var(--agent-primary), 0.8), rgba(var(--agent-secondary), 0.6));
+  --agent-gradient-dark: linear-gradient(135deg, rgba(20, 20, 20, 0.9), rgba(10, 10, 10, 0.95));
+  
+  /* UI States */
+  --success: 0, 255, 128;   /* Same as primary */
+  --warning: 255, 207, 51;  /* #FFCF33 - Yellow */
+  --error: 255, 86, 86;     /* Same as accent */
+  --info: 51, 181, 255;     /* #33B5FF - Blue */
+  
+  /* Text Colors */
+  --text-primary: 255, 255, 255;      /* White */
+  --text-secondary: 170, 170, 170;    /* Light gray */
+  --text-disabled: 100, 100, 100;     /* Dark gray */
+  
+  /* Background and UI elements */
+  --background-dark: 10, 10, 10;      /* Near black */
+  --background-panel: 20, 20, 20;     /* Slightly lighter */
+  --background-field: 30, 30, 30;     /* For input fields */
+  --border-light: 40, 40, 40;         /* Light borders */
+}
+
+/* Agent branding typography */
+@layer base {
+  body {
+    @apply bg-black text-white antialiased;
+    background-color: rgb(var(--background-dark));
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  /* Agent message styling for chat */
+  .agent-message {
+    @apply bg-black/20 border border-[rgb(var(--agent-primary))]/20 rounded-lg px-4 py-3;
+  }
+  
+  .agent-badge {
+    @apply inline-flex items-center rounded-full border border-[rgb(var(--agent-primary))]/30 bg-[rgb(var(--agent-primary))]/10 px-2.5 py-0.5 text-xs font-medium text-[rgb(var(--agent-primary))];
+  }
+  
+  .agent-button {
+    @apply inline-flex items-center justify-center rounded-md bg-[rgb(var(--agent-primary))]/80 px-4 py-2 text-sm font-medium text-black shadow transition-colors hover:bg-[rgb(var(--agent-primary))]/70 focus:outline-none focus:ring-2 focus:ring-[rgb(var(--agent-primary))]/50 focus:ring-offset-2;
+  }
+  
+  /* Agent glow effects */
+  .agent-glow {
+    box-shadow: 0 0 15px rgba(var(--agent-primary), 0.5);
+  }
+  
+  .agent-text-glow {
+    text-shadow: 0 0 8px rgba(var(--agent-primary), 0.8);
+  }
+}
+
+/* Custom scrollbar for the app */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(var(--agent-primary), 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--agent-primary), 0.5);
+}
+
+/* Animations */
+@keyframes pulse-agent {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-pulse-agent {
+  animation: pulse-agent 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Loading indicator for AI responses */
+.dots-loading {
+  display: inline-flex;
+  align-items: center;
+}
+
+.dots-loading span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: rgb(var(--agent-primary));
+  margin: 0 2px;
+  animation: pulse-agent 1.4s infinite ease-in-out both;
+}
+
+.dots-loading span:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.dots-loading span:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+/* Image handling */
+img.emoji {
+  height: 1em;
+  width: 1em;
+  margin: 0 .05em 0 .1em;
+  vertical-align: -0.1em;
+}
+
+/* Grid background pattern */
+.grid-bg-pattern {
+  background-image: 
+    linear-gradient(rgba(var(--agent-primary), 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--agent-primary), 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: center center;
+}
